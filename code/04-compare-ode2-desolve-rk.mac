@@ -1,0 +1,25 @@
+/* Example to show the working of Runge Kutta method: */
+
+/* Solve dy/dx = x, where at x = 0, y = 0. */
+
+/* 1) We solve the above differential eqn using ode2 method; */
+
+eqn:'diff(y,x)=x;
+sol:ode2(eqn,y,x);
+fsol:ic1(sol,x=0,y=0);
+wxplot2d(rhs(fsol),[x,0,2])$
+
+/* 2) Using desolve */
+
+kill(all)$
+
+eqn:diff(y(x),x)=x;
+sol:desolve(eqn,y(x));
+fsol:ev(sol,y(0)=0);
+wxplot2d(rhs(fsol),[x,0,2])$
+
+/* 3) Numerical solution with rk() */
+
+eqn:'diff(y,x)=x;
+fsol:rk(rhs(eqn),[y],[0],[x,0,2,0.9]);
+wxplot2d([discrete,fsol])$

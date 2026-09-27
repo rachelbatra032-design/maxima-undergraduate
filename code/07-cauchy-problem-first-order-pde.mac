@@ -1,0 +1,162 @@
+/* Solution of Cauchy Problem for First Order PDEs */
+
+/* Question Solve u(x+y)p + u(x-y)q = x² + y², with Cauchy data u = 0 on y = 2x */
+
+/* The given equation is of the form a(x,y,u)p + b(x,y,u)q = c(x,y,u), where */
+
+a(x,y,u):=u*(x+y);
+b(x,y,u):=u*(x-y);
+c(x,y,u):=x^2+y^2;
+
+/* The characteristic equations are dx/a(x,y,u) = dy/b(x,y,u) = du/c(x,y,u) */
+
+/* Calculating φ */
+
+/* Consider the first two ratios */
+
+dx/a(x,y,u)=dy/b(x,y,u);
+
+/* After simplification, we get xdx - ydy - (ydx + xdy) = 0 or xdx - ydy - d(xy) = 0 Integrating, we get */
+
+integrate(x,x)-integrate(y,y)-x*y;
+
+φ:%=c1; /* assigning the name φ to the above expression = c1*/
+
+/* Calculating ψ */
+
+/* Now using the multipliers, x, -y, -u, i.e. considering (xdx - ydy - udu)/(xa - yb - uc), the expression (xa - yb - uc) becomes */
+
+ratsimp(x*a(x,y,u)-y*b(x,y,u)-u*c(x,y,u));
+
+/* Hence, xdx - ydy - udu = 0 Integrating, we get */
+
+integrate(x,x)-integrate(y,y)-integrate(u,u);
+
+ψ:%=c2;
+
+/* The General Solution f(φ,ψ)=0 */
+
+/* The general solution is */
+
+f(lhs(φ),lhs(ψ))=0;
+
+/* Using Cauchy Data */
+
+/* It is given that u(x, 2x) = 0 */
+
+ev(φ,y=2*x,u=0);
+ev(ψ,y=2*x,u=0);
+
+/* We have (2/7)c1 = (2/3)c2 */
+
+ratsimp((2/7)*lhs(φ)-(2/3)*lhs(ψ)=0);
+
+solve((4·y^2-6·x·y-4·x^2+7·u^2)/21,u);
+
+kill(all);
+
+/* Question Solve p - q = 1 , with Cauchy data u(x,0) = x² */
+
+a(x,y,u):=1;
+b(x,y,u):=-1;
+c(x,y,u):=1;
+
+/* consider the first two ratios */
+
+/* Calculating φ */
+
+dx/a(x,y,u)=dy/b(x,y,u);
+
+/* after simplification we get dx+dy=0 integratinf we get */
+
+integrate(1,x)+integrate(1,y);
+
+φ:%=c1;
+
+/* Plotting the Solution */
+
+plot3d([sqrt((4*x^2-4*y^2+6*x*y)/7),-sqrt((4*x^2-4*y^2+6*x*y)/7),[x,-5,5],[y,-5,5]]);
+
+/* Calculating ψ */
+
+/* consider the last two ratios */
+
+dy/b(x,y,u)=du/c(x,y,u);
+
+/* after simplification we get du+dy=0 */
+
+integrate(1,u)+integrate(1,y);
+
+ψ:%=c2;
+
+/* The General Solution f(φ,ψ)=0 */
+
+/* the general solution is */
+
+f(lhs(φ),lhs(ψ))=0;
+
+/* Using Cauchy Data */
+
+/* it is given that u(x,0)=x^2 */
+
+ev(φ,y=0,u=x^2);
+ev(ψ,y=0,u=x^2);
+
+/* we have c2=(c1)^2 or (c1)^2-c2=0 */
+
+ratsimp((lhs(φ))^2-lhs(ψ)=0);
+
+/* Plotting the Solution */
+
+plot3d([(y^2+(2*x-1)*y+x^2),y^2+(2*x-1)*y+x^2,[x,-5,5],[y,-5,5]]);
+
+/* Question (y-u)p + (u-x)q = x - y, with Cauchy data u = 0 on xy = 1, y=(x)^(-1) */
+
+a(x,y,u):=y-u;
+b(x,y,u):=u-x;
+c(x,y,u):=x-y;
+
+/* consider the first two ratios */
+
+/* calculating Φ using multipliers 1,1,1 we get dx+dy+du=0 */
+
+integrate(1,x)+integrate(1,y)+integrate(1,u);
+
+φ:%=c1;
+
+/* Using multipliers x,y,u we get xdx+ydy+udu=0 */
+
+integrate(x,x)+integrate(y,y)+integrate(u,u);
+
+ψ:%=c2;
+
+/* now the general solution is */
+
+f(lhs(φ),lhs(ψ))=0;
+
+/* using cauchy data it is given that u(x,x^(-1)) = 0 */
+
+ev(φ,y=x^(-1),u=0);
+ev(ψ,y=x^(-1),u=0);
+
+/* the releation is that 2c2+2=(c1)^2, (c1)^2-2c2=2 */
+
+ratsimp((lhs(φ)^2)-2*lhs(ψ)=2);
+
+solve((2*x+2*u)*y+2*u*x=2,u);
+
+plot3d([(-(x*y-1)/(y+x)),[x,-5,5],[y,-5,5]]);
+
+a(x,y,u):=1;
+b(x,y,u):=-1;
+c(x,y,u):=1;
+
+integrate(1,x)+integrate(1,y);
+
+Φ:%=c1;
+
+integrate(1,u)+integrate(1,y);
+
+Ψ:%=c2;
+
+f(lhs(Φ),lhs(Ψ))=0;

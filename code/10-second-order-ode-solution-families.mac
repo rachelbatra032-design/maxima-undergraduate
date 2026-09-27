@@ -1,0 +1,47 @@
+/* Plotting Second Order Solution Families */
+
+/* We will plot the family of solutions of the given second order differential eqns: 1)y''+3y'+2y=0 where y'(0)=b, y(0)=1, b varying between -3 and 3 */
+
+eqn:'diff(y,x,2)+3*'diff(y,x)+2*y=0;
+sol:ode2(eqn,y,x);
+sol1:ic2(sol,x=0,y=1,'diff(y,x)=b);
+v1:ev(sol1,b=-3);
+v2:ev(sol1,b=-2);
+v3:ev(sol1,b=-1);
+v4:ev(sol1,b=-0);
+v5:ev(sol1,b=-1);
+v6:ev(sol1,b=-2);
+v7:ev(sol1,b=-3);
+wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4),rhs(v5),rhs(v6),rhs(v7)],[x,-1,4], [style,[lines,0.5],[lines,1],[lines,1.5],
+[lines,2],[lines,2.5],[lines,3],[lines,3.5]],[legend,"1","2","3","4","5","6","7"])$
+
+/* 2)y''+3y'+2y=0 where y(0)=a, y'(0)=1 */
+
+eqn:'diff(y,x,2)+3*'diff(y,x)+2*y=0;
+sol:ode2(eqn,y,x);
+sol1:ic2(sol,x=0,y=a,'diff(y,x)=1);
+v1:ev(sol1,a=-3);
+v2:ev(sol1,a=-2);
+v3:ev(sol1,a=-1);
+v4:ev(sol1,a=-0);
+v5:ev(sol1,a=-1);
+v6:ev(sol1,a=-2);
+v7:ev(sol1,a=-3);
+wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4),rhs(v5),rhs(v6),rhs(v7)],[x,-1,4], [style,[lines,0.5],[lines,1],[lines,1.5],
+[lines,2],[lines,2.5],[lines,3],[lines,3.5]],[legend,"1","2","3","4","5","6","7"])$
+
+/* 3)We will plot the family of solutions of the diff eqn given in 1) above using desolve */
+
+kill(all)$
+eqn:diff(y(x),x,2)+3*diff(y(x),x)+2*y=0;
+sol:desolve(eqn,y(x));
+V:ev(sol, y(0)=a,diff(y(x),x)=1);
+v1:ev(sol,a=-3);
+v2:ev(sol,a=-2);
+v3:ev(sol,a=-1);
+v4:ev(sol,a=-0);
+v5:ev(sol,a=-1);
+v6:ev(sol,a=-2);
+v7:ev(sol,a=-3);
+wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4),rhs(v5),rhs(v6),rhs(v7)],[x,-1,4], [style,[lines,0.5],[lines,1],[lines,1.5],
+[lines,2],[lines,2.5],[lines,3],[lines,3.5]],[legend,"1","2","3","4","5","6","7"])$

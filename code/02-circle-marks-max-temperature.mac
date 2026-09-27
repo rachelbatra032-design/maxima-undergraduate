@@ -1,0 +1,49 @@
+/* 1)Write a Program that calculates the radius and the area of a circle,where the perimeter is entered by the user. */
+
+fpprintprec:4$
+block(
+    x:read("Enter the perimeter of the circle"),
+    y:x/(2*(%pi)),
+    R: print ("the radius of the circle is",float(y)),
+    z: (%pi)*y*y,
+    A:print("the area of the circle is",float(z))
+)$
+
+/* 2)Program that inputs five scores of semester III and calculates the total score and percentage. */
+
+fpprintprec:4$
+block(
+    A: read("Enter your Intermediate Macro marks "),
+    B: read("Enter your Intermediate Micro marks"),
+    C:read("Enter your Stats amrks"),
+    D:read("Enter your GE - DE marks"),
+    E:read("Enter your DAmarks"),
+    F:A+B+C+D+E,
+    G:((A+B+C+D+E)/550)*100,
+    print("your total marks in sem III:",F),
+    print("your total percentage in sem III:",float(G))
+)$
+
+/* 3)Program that finds the larger of the two numbers entered by the user.(Conditional Structure/If Statement) */
+
+block(
+    x:read("enter your first number"),
+    y:read("enter your second number"),
+    if (x > y) then
+        print(x, "is greater than", y)
+    else
+        print(y, "is greater than", x)
+)$
+
+/* 4)Program to convert celsius to fahrenheit and vice versa depending on user's input */
+
+block(
+    x:read("enter your temperature"),
+    y:read("if your temperature is celsius then enter C or if fahrenheit enter F"),
+    H:float((x*9/5)+32),
+    G:float(((32*x)-32)*5/9),
+    if (y = C) then
+        print("your temp in fahrenheit is", H)
+    else
+        print("your temp in celsius is", G)
+)$

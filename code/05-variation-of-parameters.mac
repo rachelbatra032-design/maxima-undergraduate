@@ -1,0 +1,99 @@
+/* Method of Variation of Parameters */
+
+/* Ques: Solve y''-y=x Sol: The general solution comprises of two parts: y=yh+yp For yh: We solve the homogeneous part using ode2. */
+
+ode2('diff(y,x,2)-y=0,y,x);
+
+yh:rhs(%);                                                                          /*giving a name to the RHS of previous output*/
+
+y1:%e^x; y2:%e^(-x); r:x;                                                /*assigning relevant names*/
+
+/* For yp: We calculate the Wronskian of y1 and y2 */
+
+/* [y1,y2], */
+
+A: matrix(
+[diff(y1,x),diff(y2,x)]                                                /*Shortcut for this command: Matrix -> Enter Matrix*/
+);
+
+W: determinant(A);
+
+/* We now find u1 and u2 */
+
+u1:integrate(-y2*r/W,x) ;                                         /*Shortcut for this command: Calculus -> Integrate*/;
+
+u2: integrate(y1*r/W,x);
+
+/* Now, yp=u1y1+u2y2 */
+
+yp:ratsimp(u1*y1+u2*y2);                                  /*This command simplifies the expressiom*/
+
+/* The general solution is */
+
+'y=yh+yp;
+
+/* Ques. y'' + y = secx */
+
+ode2('diff(y,x,2)+y=0,y,x);
+
+yh:rhs(%);
+
+y1:sin(x);y2:cos(x);r:sec(x);
+
+/* [y1,y2], */
+
+A: matrix(
+[diff(y1,x),diff(y2,x)]
+);
+
+W: determinant(A);
+
+u1:integrate(-y2*r/W,x);
+
+u2:integrate(-y1*r/W,x);
+
+yp:ratsimp(u1*y1+u2*y2);
+
+'y=yh+yp;
+
+/* Ques.y''-2y'+y= (e^x)/x */
+
+ode2('diff(y,x,2)-2*('diff(y,x))+y=0,y,x);      /* Use 'diff when u want dy/dx to be shown and not the value of the differential*/
+
+yh:rhs(%);
+
+y1:x*(%e^x);y2:%e^x;r:(%e^x)/x;
+
+/* [y1,y2], */
+
+A: matrix(
+[diff(y1,x),diff(y2,x)]
+);
+
+W: determinant(A);
+
+u1: integrate(-y2*r/W,x);
+
+u2: integrate(y1*r/W,x);
+
+yp:ratsimp(u1*y1+u2*y2);
+
+'y=yh+yp;
+
+ode2('diff(y,x,2)+2*'diff(y,x)+y=0,y,x);
+
+yh:rhs(%);
+
+y1:x*%e^(-x);y1:%e^(-x);r:2*x*sin(x);
+
+A:matrix([y1,y2],[diff(y1,x),diff(y2,x)]);
+
+w:determinant(A);
+
+u1:integrate(-y2*r/w,x);
+
+u2:integrate(y1*r/w,x);
+
+yp:ratsimp(u1*y1+u2*y2);
+
+'y=yp+yh;

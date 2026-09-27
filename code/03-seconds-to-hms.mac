@@ -1,0 +1,22 @@
+/* Convert Seconds to Hours, Minutes */
+
+t:read("Enter time in seconds")$
+h:floor(t/3600)$
+m:t-h*3600$
+d:floor(m/60)$
+s:m-d*60$
+print("The time is",h,":",d,":",s)$
+
+/* What is actually there in the syllabus */
+
+diff(x^3,x);
+
+'diff(y,x);
+
+a: 'diff(y,x)+7*y=3;
+
+sol:ode2('diff(y,x)=x,y,x);
+
+ic1(sol,x=0,y=1);
+
+wxplot2d([x^2], [x,-3,3])$

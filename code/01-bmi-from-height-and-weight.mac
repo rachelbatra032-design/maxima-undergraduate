@@ -1,0 +1,9 @@
+/* Calculating BMI */
+
+W: read("Enter your weight") $
+
+H: read("Enter your height in feet and inches")$
+
+H1: print("Height in metres", 5.5*0.305)$
+
+print("Your BMI is:", W/(H1)^2)$
