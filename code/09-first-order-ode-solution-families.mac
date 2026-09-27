@@ -1,7 +1,5 @@
 /* Plotting First Order Solution Families */
-
 /* Plotting the family of solutions of a first order differential equation : y'= x^2 where y(0)=k a) Using the pre defined function : ode2 (works for an ode of order upto 2) eqn:'diff(y,x)=x^2; sol:ode2(eqn,y,x); sol1:ic1(sol,x=0,y=k); v1:ev(sol1,k=-2); v2:ev(sol1,k=-1); v3:ev(sol1,k=1); v4:ev(sol1,k=2); wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4)], [x,-3,3],[style,[lines,1],[lines,2],[lines,3],[lines,4]])$ */
-
 eqn:'diff(y,x)=x^2;                                          /* The equation is: y'= x^2 */
 sol:ode2(eqn,y,x);                                        /*sol is the name given to the general solution */
 sol1:ic1(sol,x=0,y=k);                                   /*sol1 is a particular solution, with default constant %c being replaced by   */
@@ -12,7 +10,6 @@ v4:ev(sol1,k=2);
 wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4)], [x,-3,3],[style,[lines,1],[lines,2],[lines,3],[lines,4]])$
 
 /* b)Using the pre-defined function: desolve (works for an ode of any order) */
-
 kill(all)$                                                        /*to unassign the previously defined variables */
 eqn:diff(y(x),x)=x^2;                                          /* y is explicitly written as a function of x. Also, no single quote required. */
 sol:desolve(eqn,y(x));                                        /*desolve doesnt give constants explicitly but their value(s0) */
@@ -22,7 +19,6 @@ v2:ev(sol1,k=-1);
 v3:ev(sol1,k=1);
 v4:ev(sol1,k=2);
 wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4)], [x,-3,3],[style,[lines,1],[lines,2],[lines,3],[lines,4]])$
-
 kill(all)$
 eqn:'diff(y,x)=9.8-0.196*y;                                          /* The equation is: y'= x^2 */
 sol:ode2(eqn,y,x);                                        /*sol is the name given to the general solution */
@@ -32,7 +28,6 @@ v2:ev(sol1,k=-1);
 v3:ev(sol1,k=1);
 v4:ev(sol1,k=2);
 wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4)], [x,-3,3],[style,[lines,1],[lines,2],[lines,3],[lines,4]])$
-
 kill(all)$
 eqn:'diff(y,x)*cos(x)+y*sin(x)=2*(cos(x))^3*(sin(x))-1;
 sol:ode2(eqn,y,x);
@@ -42,7 +37,6 @@ v2:ev(sol1,k=-8);
 v3:ev(sol1,k=0);
 v4:ev(sol1,k=125);
 wxplot2d([rhs(v1),rhs(v2),rhs(v3),rhs(v4)],[x,-5,5],[style,[lines,2],[lines,8],[lines,4],[lines,7]])$
-
 eqn:'diff(y,x)-y=sin(x)+cos(x);
 sol:ode2(eqn,y,x);
 sol1:ic1(sol,x=0,y=k);

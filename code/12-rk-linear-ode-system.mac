@@ -1,7 +1,5 @@
 /* Linear system of ODEs using the RK method */
-
 /* dx/dt = 3x + 2y,  dy/dt = 2x + 3y,  x(0) = 0.5, y(0) = -0.5 */
-
 eqn1:'diff(x,t)=3*x+2*y$
 eqn2:'diff(y,t)=2*x+3*y$
 list: rk([rhs(eqn1),rhs(eqn2)], [x,y], [0.5,-0.5], [t,0,2,0.2])$

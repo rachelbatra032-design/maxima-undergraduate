@@ -1,7 +1,5 @@
 /* Solution of a system of ODEs */
-
 /* dx/dt = 4 - x^2 - 4 y^2,  dy/dt = y^2 - x^2 + 1,  x(0) = -1.25, y(0) = 0.75 */
-
 eqn1:'diff(x,t) = 4 - x^2 - 4*y^2;
 eqn2:'diff(y,t) = y^2 - x^2 +1;
 list:rk([rhs(eqn1),rhs(eqn2)],[x,y],[-1.25,0.75],[t,0,2,0.2]);
